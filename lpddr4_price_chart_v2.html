@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LPDDR4 / DDR4 Memory Spot Price Index — YTD</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #030712;
+      color: #fff;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { font-size: 1.125rem; font-weight: bold; margin-bottom: 8px; }
+    .subtitle { color: #9ca3af; margin-bottom: 24px; }
+    .chart-container { background: #111827; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    canvas { max-width: 100%; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-card { background: #111827; border-radius: 8px; padding: 16px; }
+    .stat-label { color: #9ca3af; font-size: 14px; }
+    .stat-value { font-size: 1.875rem; font-weight: bold; }
+    .stat-note { color: #6b7280; font-size: 12px; }
+    .red { color: #f87171; }
+    .orange { color: #fb923c; }
+    .yellow { color: #facc15; }
+    .red-bright { color: #ef4444; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px; }
+    @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-card { background: #111827; border-radius: 12px; padding: 24px; }
+    .info-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; }
+    .phase-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .phase-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .blue-dot { background: #60a5fa; }
+    .yellow-dot { background: #facc15; }
+    .orange-dot { background: #fb923c; }
+    .red-dot { background: #f87171; }
+    .phase-text { color: #d1d5db; }
+    .phase-label { font-weight: 500; }
+    .blue-text { color: #60a5fa; }
+    .yellow-text { color: #facc15; }
+    .orange-text { color: #fb923c; }
+    .red-text { color: #f87171; }
+    .event-list { list-style: none; }
+    .event-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 14px; color: #d1d5db; }
+    .event-item strong { color: #fff; }
+    .drivers-card { background: linear-gradient(to right, #111827, #1f2937); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .drivers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; font-size: 14px; }
+    @media (max-width: 768px) { .drivers-grid { grid-template-columns: 1fr; } }
+    .driver-title { color: #34d399; font-weight: 500; margin-bottom: 4px; }
+    .driver-text { color: #9ca3af; }
+    .sources { color: #6b7280; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LPDDR4 / DDR4 Memory Spot Price Index — YTD</h1>
+    <p class="subtitle">January 2025 – February 2026 (Index: Jan 2025 = 100)</p>
+    
+    <div class="chart-container">
+      <canvas id="priceChart"></canvas>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-label">YTD Change</p>
+        <p class="stat-value red">+550%</p>
+        <p class="stat-note">Jan 25 → Feb 26</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Mar–Jun 2025</p>
+        <p class="stat-value orange">+100%</p>
+        <p class="stat-note">Post-CXMT shift</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Q4 2025</p>
+        <p class="stat-value yellow">+50%</p>
+        <p class="stat-note">Oct → Dec</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Q1 2026</p>
+        <p class="stat-value red-bright">+44%</p>
+        <p class="stat-note">And accelerating</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h2 class="info-title">Phase Timeline</h2>
+        <div class="phase-item">
+          <div class="phase-dot blue-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label blue-text">Jan–Feb 2025:</span> Oversupply from CXMT
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot yellow-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label yellow-text">Mar 2025:</span> Inflection point
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot orange-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label orange-text">Apr–Sep 2025:</span> Rapid price surge
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot red-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label red-text">Oct 2025–present:</span> Supply crisis
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2 class="info-title">Key Events</h2>
+        <ul class="event-list">
+          <li class="event-item"><span class="yellow-text">▸</span> <span><strong>Q4 2024:</strong> China directs CXMT to shift DDR4→DDR5</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>Apr 2025:</strong> Samsung EOLs 8Gb DDR4 production</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>May 2025:</strong> DDR4 reaches price parity with DDR5</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Dec 2025:</strong> Samsung final DDR4 module shipments</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Q1 2026:</strong> Micron winds down DDR4/LPDDR4</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="drivers-card">
+      <h2 class="info-title">Structural Drivers</h2>
+      <div class="drivers-grid">
+        <div>
+          <p class="driver-title">Supply Contraction</p>
+          <p class="driver-text">Samsung, Micron, SK Hynix all phasing out DDR4/LPDDR4 to reallocate fab capacity to HBM and DDR5</p>
+        </div>
+        <div>
+          <p class="driver-title">AI Demand</p>
+          <p class="driver-text">HBM for AI accelerators commands 3× the wafer capacity vs commodity DRAM; hyperscalers absorbing supply</p>
+        </div>
+        <div>
+          <p class="driver-title">CXMT Pivot</p>
+          <p class="driver-text">China's dominant DDR4 supplier shifted to DDR5 in Q1 2025, removing the main source of cheap supply</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sources">
+      Sources: TrendForce, Counterpoint Research, The Memory Guy, DRAMeXchange, Raspberry Pi announcements. 
+      Index values are representative estimates based on reported percentage changes; exact spot prices are behind paywalls.
+    </p>
+  </div>
+
+  <script>
+    const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26'];
+    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650];
+    const events = [
+      'Stable/declining, CXMT flooding market',
+      'Continued dip from Chinese oversupply',
+      'Inflection point: CXMT shifts to DDR5',
+      'Samsung EOL for 8Gb DDR4; +50%/month spikes',
+      'DDR4 reaches parity with DDR5',
+      'Prices nearly tripled from March low',
+      'Q3 contract prices up 40-45%',
+      'DDR4 outpacing DDR5 by 50%',
+      '+187% YoY; panic buying begins',
+      'RPi Compute Module price hike',
+      'Counterpoint warns of 30% Q4 rise',
+      'RPi 4/5 prices raised; 1GB Pi 5 launched',
+      'Prices more than double QoQ',
+      'Second RPi price hike; 16GB Pi 5 hits $205'
+    ];
+
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Price Index',
+          data: prices,
+          borderColor: '#10b981',
+          backgroundColor: gradient,
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointBackgroundColor: '#10b981',
+          pointBorderColor: '#10b981',
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#34d399'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2,
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#111827',
+            titleColor: '#fff',
+            bodyColor: '#9ca3af',
+            borderColor: '#4b5563',
+            borderWidth: 1,
+            padding: 12,
+            displayColors: false,
+            callbacks: {
+              title: function(context) {
+                return context[0].label;
+              },
+              label: function(context) {
+                return 'Index: ' + context.raw;
+              },
+              afterLabel: function(context) {
+                return events[context.dataIndex];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {
+              color: '#374151',
+              drawBorder: false
+            },
+            ticks: {
+              color: '#9ca3af',
+              maxRotation: 45,
+              minRotation: 45
+            }
+          },
+          y: {
+            min: 0,
+            max: 700,
+            grid: {
+              color: '#374151',
+              drawBorder: false
+            },
+            ticks: {
+              color: '#9ca3af'
+            },
+            title: {
+              display: true,
+              text: 'Price Index',
+              color: '#9ca3af'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
