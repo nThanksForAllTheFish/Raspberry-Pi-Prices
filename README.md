@@ -27,7 +27,7 @@ The impact is visible in products like the Raspberry Pi 5, which has seen two pr
 
 ## View the Chart
 
-**Option 1:** [View live version](https://github.com/kevinagomez/Raspberry-Pi)
+**Option 1:** [View live version](https://kevinagomez.github.io/Raspberry-Pi/)
 
 **Option 2:** Download `lpddr4_price_chart.html` and open it in any browser
 
