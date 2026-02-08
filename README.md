@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/25157935/README.md)
 # LPDDR4 / DDR4 Memory Spot Price Index — YTD
 
 An interactive chart tracking the dramatic rise in LPDDR4 and DDR4 memory prices from January 2025 through February 2026.
