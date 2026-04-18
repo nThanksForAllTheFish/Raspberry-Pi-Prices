@@ -31,7 +31,7 @@ As of April 2026, DDR4 spot prices ($2.10/Gbit) have overtaken HBM3e contract pr
 
 ## View the Chart
 
-**Option 1:** [View live version](https://kevinagomez.github.io/Raspberry-Pi/)
+**Option 1:** [View live version](https://kevinagomez.github.io/Raspberry-Pi-Prices/)
 
 **Option 2:** Download `lpddr4_price_chart.html` and open it in any browser
 
