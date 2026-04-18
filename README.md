@@ -2,7 +2,7 @@
 
 An interactive chart tracking the dramatic rise in LPDDR4 and DDR4 memory prices from January 2025 through April 2026.
 
-![Chart Preview](chart.png)
+![Chart Preview](preview.png)
 
 ## The Story
 
