@@ -59,7 +59,7 @@
 <body>
   <div class="container">
     <h1>LPDDR4 / DDR4 Memory Spot Price Index — YTD</h1>
-    <p class="subtitle">January 2025 – February 2026 (Index: Jan 2025 = 100)</p>
+    <p class="subtitle">January 2025 – April 2026 (Index: Jan 2025 = 100)</p>
     
     <div class="chart-container">
       <canvas id="priceChart"></canvas>
@@ -68,13 +68,8 @@
     <div class="stats-grid">
       <div class="stat-card">
         <p class="stat-label">YTD Change</p>
-        <p class="stat-value red">+550%</p>
-        <p class="stat-note">Jan 25 → Feb 26</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-label">Mar–Jun 2025</p>
-        <p class="stat-value orange">+100%</p>
-        <p class="stat-note">Post-CXMT shift</p>
+        <p class="stat-value red">+595%</p>
+        <p class="stat-note">Jan 25 → Apr 26</p>
       </div>
       <div class="stat-card">
         <p class="stat-label">Q4 2025</p>
@@ -83,8 +78,13 @@
       </div>
       <div class="stat-card">
         <p class="stat-label">Q1 2026</p>
-        <p class="stat-value red-bright">+44%</p>
-        <p class="stat-note">And accelerating</p>
+        <p class="stat-value red-bright">+27%</p>
+        <p class="stat-note">Jan → Mar 26</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Q2 2026</p>
+        <p class="stat-value orange">−0.7%</p>
+        <p class="stat-note">Early Apr — first crack</p>
       </div>
     </div>
 
@@ -125,6 +125,8 @@
           <li class="event-item"><span class="orange-text">▸</span> <span><strong>May 2025:</strong> DDR4 reaches price parity with DDR5</span></li>
           <li class="event-item"><span class="red-text">▸</span> <span><strong>Dec 2025:</strong> Samsung final DDR4 module shipments</span></li>
           <li class="event-item"><span class="red-text">▸</span> <span><strong>Q1 2026:</strong> Micron winds down DDR4/LPDDR4</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Mar 2026:</strong> Samsung DDR4 freeze; DDR4 spot ($2.10/Gbit) exceeds HBM3e contract ($1.70/Gbit)</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>Apr 2026:</strong> 3rd RPi price hike; new 3GB Pi 4 at $83.75; LPDDR4 +7× YoY; spot edges −0.48%</span></li>
         </ul>
       </div>
     </div>
@@ -154,8 +156,8 @@
   </div>
 
   <script>
-    const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26'];
-    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650];
+    const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26', 'Mar 26', 'Apr 26'];
+    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650, 700, 695];
     const events = [
       'Stable/declining, CXMT flooding market',
       'Continued dip from Chinese oversupply',
@@ -170,7 +172,9 @@
       'Counterpoint warns of 30% Q4 rise',
       'RPi 4/5 prices raised; 1GB Pi 5 launched',
       'Prices more than double QoQ',
-      'Second RPi price hike; 16GB Pi 5 hits $205'
+      'Second RPi price hike; 16GB Pi 5 hits $205',
+      'Spot momentum stalls; Samsung Mar DDR4 freeze',
+      '3rd RPi price hike; new 3GB Pi 4 at $83.75; LPDDR4 +7× YoY; spot edges −0.48%'
     ];
 
     const ctx = document.getElementById('priceChart').getContext('2d');
@@ -245,7 +249,7 @@
           },
           y: {
             min: 0,
-            max: 700,
+            max: 750,
             grid: {
               color: '#374151',
               drawBorder: false
