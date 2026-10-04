@@ -26,7 +26,7 @@ After a pause in April and May 2026, spot prices climbed again from June through
 | May 2025 | DDR4 reaches price parity with DDR5 |
 | Dec 2025 | Samsung final DDR4 module shipments |
 | Q1 2026 | Micron winds down DDR4/LPDDR4; DRAM contract +93–98% QoQ |
-| Mar 2026 | Samsung DDR4 freeze; DDR4 spot overtakes HBM3e contract per Gbit |
+| Mar 2026 | Samsung DDR4 freeze; legacy DDR4 spot overtakes HBM3e contract pricing per gigabit |
 | Apr 2026 | 3rd RPi price hike (16GB Pi 5 to $305); new 3GB Pi 4 at $83.75; Samsung stops taking LPDDR4 orders |
 | May 2026 | Micron restarts LPDDR4/DDR4 at Fab 6, Virginia |
 | Jul 2026 | Spot +17% in a month; CXMT IPO; Q3 contract +13–18% |
