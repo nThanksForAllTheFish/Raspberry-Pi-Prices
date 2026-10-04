@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LPDDR4 / DDR4 Memory Spot Price Index — YTD</title>
+  <title>LPDDR4 / DDR4 Memory Spot Price Index — Jan 2025 to date</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,6 +19,10 @@
     .subtitle { color: #9ca3af; margin-bottom: 24px; }
     .chart-container { background: #111827; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
     canvas { max-width: 100%; }
+    .legend { display: flex; gap: 24px; flex-wrap: wrap; color: #9ca3af; font-size: 13px; margin-top: 12px; }
+    .legend span::before { content: ''; display: inline-block; width: 28px; height: 0; vertical-align: middle; margin-right: 8px; border-top: 2px solid #10b981; }
+    .legend .proj::before { border-top-style: dashed; border-color: #fbbf24; }
+    .legend .band::before { height: 10px; border: none; background: rgba(251, 191, 36, 0.18); }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
     @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
     .stat-card { background: #111827; border-radius: 8px; padding: 16px; }
@@ -29,22 +33,27 @@
     .orange { color: #fb923c; }
     .yellow { color: #facc15; }
     .red-bright { color: #ef4444; }
+    .amber { color: #fbbf24; }
     .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px; }
     @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
     .info-card { background: #111827; border-radius: 12px; padding: 24px; }
     .info-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; }
     .phase-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .phase-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .phase-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
     .blue-dot { background: #60a5fa; }
     .yellow-dot { background: #facc15; }
     .orange-dot { background: #fb923c; }
     .red-dot { background: #f87171; }
+    .amber-dot { background: #fbbf24; }
+    .gray-dot { background: #9ca3af; }
     .phase-text { color: #d1d5db; }
     .phase-label { font-weight: 500; }
     .blue-text { color: #60a5fa; }
     .yellow-text { color: #facc15; }
     .orange-text { color: #fb923c; }
     .red-text { color: #f87171; }
+    .amber-text { color: #fbbf24; }
+    .gray-text { color: #9ca3af; }
     .event-list { list-style: none; }
     .event-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 14px; color: #d1d5db; }
     .event-item strong { color: #fff; }
@@ -53,38 +62,45 @@
     @media (max-width: 768px) { .drivers-grid { grid-template-columns: 1fr; } }
     .driver-title { color: #34d399; font-weight: 500; margin-bottom: 4px; }
     .driver-text { color: #9ca3af; }
+    .proj-card { background: #111827; border-radius: 12px; padding: 24px; margin-bottom: 24px; border-left: 3px solid #fbbf24; }
+    .proj-card p { color: #d1d5db; font-size: 14px; line-height: 1.5; }
     .sources { color: #6b7280; font-size: 14px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>LPDDR4 / DDR4 Memory Spot Price Index — YTD</h1>
-    <p class="subtitle">January 2025 – April 2026 (Index: Jan 2025 = 100)</p>
+    <h1>LPDDR4 / DDR4 Memory Spot Price Index</h1>
+    <p class="subtitle">January 2025 – October 2026, with a two-month projection (Index: Jan 2025 = 100)</p>
     
     <div class="chart-container">
       <canvas id="priceChart"></canvas>
+      <div class="legend">
+        <span>Spot price index (TrendForce mainstream DDR4 8Gb)</span>
+        <span class="proj">Projection, Nov–Dec 2026</span>
+        <span class="band">Projection range (flat spot to high contract case)</span>
+      </div>
     </div>
 
     <div class="stats-grid">
       <div class="stat-card">
-        <p class="stat-label">YTD Change</p>
-        <p class="stat-value red">+595%</p>
-        <p class="stat-note">Jan 25 → Apr 26</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-label">Q4 2025</p>
-        <p class="stat-value yellow">+50%</p>
-        <p class="stat-note">Oct → Dec</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-label">Q1 2026</p>
-        <p class="stat-value red-bright">+27%</p>
-        <p class="stat-note">Jan → Mar 26</p>
+        <p class="stat-label">Since Jan 2025</p>
+        <p class="stat-value red">+890%</p>
+        <p class="stat-note">Jan 25 → Oct 26</p>
       </div>
       <div class="stat-card">
         <p class="stat-label">Q2 2026</p>
-        <p class="stat-value orange">−0.7%</p>
-        <p class="stat-note">Early Apr — first crack</p>
+        <p class="stat-value orange">+10%</p>
+        <p class="stat-note">April dip, then late-May rebound</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Q3 2026</p>
+        <p class="stat-value red-bright">+29%</p>
+        <p class="stat-note">July alone +17%</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Q4 2026 outlook</p>
+        <p class="stat-value amber">+10–15%</p>
+        <p class="stat-note">TrendForce contract forecast; spot flat since mid-Sep</p>
       </div>
     </div>
 
@@ -112,7 +128,25 @@
         <div class="phase-item">
           <div class="phase-dot red-dot"></div>
           <div class="phase-text">
-            <span class="phase-label red-text">Oct 2025–present:</span> Supply crisis
+            <span class="phase-label red-text">Oct 2025–Mar 2026:</span> Supply crisis, prices more than double
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot gray-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label gray-text">Apr–May 2026:</span> First pause; spot slips, demand shifts to DDR5
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot red-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label red-text">Jun–Sep 2026:</span> Second leg up on branded DDR4 demand
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-dot amber-dot"></div>
+          <div class="phase-text">
+            <span class="phase-label amber-text">Oct 2026–present:</span> Spot plateau at record levels; contract still rising
           </div>
         </div>
       </div>
@@ -124,11 +158,21 @@
           <li class="event-item"><span class="orange-text">▸</span> <span><strong>Apr 2025:</strong> Samsung EOLs 8Gb DDR4 production</span></li>
           <li class="event-item"><span class="orange-text">▸</span> <span><strong>May 2025:</strong> DDR4 reaches price parity with DDR5</span></li>
           <li class="event-item"><span class="red-text">▸</span> <span><strong>Dec 2025:</strong> Samsung final DDR4 module shipments</span></li>
-          <li class="event-item"><span class="red-text">▸</span> <span><strong>Q1 2026:</strong> Micron winds down DDR4/LPDDR4</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Q1 2026:</strong> Micron winds down DDR4/LPDDR4; DRAM contract +93–98% QoQ</span></li>
           <li class="event-item"><span class="red-text">▸</span> <span><strong>Mar 2026:</strong> Samsung DDR4 freeze; DDR4 spot ($2.10/Gbit) exceeds HBM3e contract ($1.70/Gbit)</span></li>
-          <li class="event-item"><span class="orange-text">▸</span> <span><strong>Apr 2026:</strong> 3rd RPi price hike; new 3GB Pi 4 at $83.75; LPDDR4 +7× YoY; spot edges −0.48%</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>Apr 2026:</strong> 3rd RPi price hike (16GB Pi 5 to $305); new 3GB Pi 4 at $83.75; Samsung stops taking LPDDR4/4X orders</span></li>
+          <li class="event-item"><span class="gray-text">▸</span> <span><strong>May 2026:</strong> Micron restarts LPDDR4/DDR4 at Fab 6 Virginia (a transfer from Taiwan, not new supply)</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Jul 2026:</strong> Spot +17% in one month; CXMT IPO raises ~$8.6B; Q3 contract +13–18%</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Aug 2026:</strong> Record spot; Nanya record revenue, ~70% DDR4/LPDDR4; Upton: paying 10× for DRAM vs 18 months ago</span></li>
+          <li class="event-item"><span class="amber-text">▸</span> <span><strong>Sep 2026:</strong> Spot stalls; TrendForce calls Q4 contract +10–15%; Winbond customers seek LTAs to 2028–2030</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>1 Oct 2026:</strong> 4th RPi price hike: 2GB Pi 4 $55→$67.50, 2GB Pi 5 $65→$77.50</span></li>
         </ul>
       </div>
+    </div>
+
+    <div class="proj-card">
+      <h2 class="info-title">About the projection</h2>
+      <p>The dotted line carries TrendForce's 30 September forecast of +10–15% for Q4 2026 conventional DRAM contract prices onto the spot index at roughly +4% per month, reaching about 1,030 in November and 1,070 in December. The shaded range runs from a flat case (spot has not moved since mid-September, and one analyst calls Q4 at +0–5%) up to the high end of the PC DRAM forecast (+13–18%). Nobody publishes November- or December-specific numbers; these are derived from quarterly ranges. Relief is not in any forecast before late 2027: Nanya's new fab starts wafers in H2 2027, Micron's Virginia restart only quadruples a 7% slice of its output by 2027, and Counterpoint still sees no correction before H2 2027.</p>
     </div>
 
     <div class="drivers-card">
@@ -136,28 +180,34 @@
       <div class="drivers-grid">
         <div>
           <p class="driver-title">Supply Contraction</p>
-          <p class="driver-text">Samsung, Micron, SK Hynix all phasing out DDR4/LPDDR4 to reallocate fab capacity to HBM and DDR5</p>
+          <p class="driver-text">Samsung, Micron, SK Hynix all phasing out DDR4/LPDDR4 to reallocate fab capacity to HBM and DDR5; Samsung's LPDDR4 lines convert after Q1 2027</p>
         </div>
         <div>
           <p class="driver-title">AI Demand</p>
-          <p class="driver-text">HBM for AI accelerators commands 3× the wafer capacity vs commodity DRAM; hyperscalers absorbing supply</p>
+          <p class="driver-text">HBM for AI accelerators commands 3× the wafer capacity vs commodity DRAM; hyperscalers absorbing supply; PC OEMs now buying ahead of expected 2027 tightness</p>
         </div>
         <div>
           <p class="driver-title">CXMT Pivot</p>
-          <p class="driver-text">China's dominant DDR4 supplier shifted to DDR5 in Q1 2025, removing the main source of cheap supply</p>
+          <p class="driver-text">China's dominant DDR4 supplier shifted to DDR5 in Q1 2025 and is now in G5-node LPDDR5X production, removing the main source of cheap legacy supply</p>
         </div>
       </div>
     </div>
 
     <p class="sources">
-      Sources: TrendForce, Counterpoint Research, The Memory Guy, DRAMeXchange, Raspberry Pi announcements. 
-      Index values are representative estimates based on reported percentage changes; exact spot prices are behind paywalls.
+      Sources: TrendForce / DRAMeXchange weekly spot updates (mainstream DDR4 8Gb 1Gx8 3200), TrendForce quarterly contract forecasts, Counterpoint Research, The Memory Guy, DigiTimes, Raspberry Pi announcements. 
+      Index values are representative estimates: the Jan 2025–Apr 2026 series is reconstructed from reported percentage changes, and May–Oct 2026 applies TrendForce month-end spot ratios to the April value. Exact spot prices are behind paywalls. Last updated 4 October 2026.
     </p>
   </div>
 
   <script>
-    const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26', 'Mar 26', 'Apr 26'];
-    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650, 700, 695];
+    const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25',
+                    'Jan 26', 'Feb 26', 'Mar 26', 'Apr 26', 'May 26', 'Jun 26', 'Jul 26', 'Aug 26', 'Sep 26', 'Oct 26', 'Nov 26', 'Dec 26'];
+    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650, 700, 695, 719, 770, 900, 933, 990, 990, null, null];
+    // Projection: starts at the last actual point so the dotted line is continuous.
+    const N = null;
+    const projCentral = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990, 1030, 1070];
+    const projLow     = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990,  990,  990];
+    const projHigh    = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990, 1045, 1105];
     const events = [
       'Stable/declining, CXMT flooding market',
       'Continued dip from Chinese oversupply',
@@ -174,7 +224,15 @@
       'Prices more than double QoQ',
       'Second RPi price hike; 16GB Pi 5 hits $205',
       'Spot momentum stalls; Samsung Mar DDR4 freeze',
-      '3rd RPi price hike; new 3GB Pi 4 at $83.75; LPDDR4 +7× YoY; spot edges −0.48%'
+      '3rd RPi price hike (16GB Pi 5 to $305); new 3GB Pi 4 at $83.75; LPDDR4 +7× YoY; spot edges −0.48%',
+      'Spot +3.4%: flat most of the month, +3.7% rebound in the last week; Q2 contract +58–63%',
+      'Spot +7.1%: early-June gains, then sideways; DDR4 tightness spills into DDR3',
+      'Spot +16.9%, strongest month of 2026; branded DDR4 demand; CXMT IPO',
+      'Spot +3.7%; record $42.50 per 8Gb chip on 10 Aug, then consolidation',
+      'Spot +6.1%; 8Gb still rising while 16Gb DDR4 and DDR5 soften; Q4 contract called +10–15%',
+      'Spot flat through 2 Oct (partial month, provisional); 4th RPi hike: 2GB Pi 4 $67.50, 2GB Pi 5 $77.50',
+      'Projection: Q4 contract +10–15% spread at ~4%/month; range flat to +5.7%/month',
+      'Projection: central 1,070; range 990 (flat spot) to 1,105 (high contract case)'
     ];
 
     const ctx = document.getElementById('priceChart').getContext('2d');
@@ -199,7 +257,44 @@
           pointBorderColor: '#10b981',
           pointRadius: 3,
           pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#34d399'
+          pointHoverBackgroundColor: '#34d399',
+          order: 1
+        }, {
+          label: 'Projection',
+          data: projCentral,
+          borderColor: '#fbbf24',
+          borderWidth: 2,
+          borderDash: [6, 6],
+          fill: false,
+          tension: 0.3,
+          pointBackgroundColor: '#fbbf24',
+          pointBorderColor: '#fbbf24',
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          order: 0
+        }, {
+          label: 'Projection high',
+          data: projHigh,
+          borderColor: 'rgba(251, 191, 36, 0.35)',
+          borderWidth: 1,
+          borderDash: [2, 4],
+          backgroundColor: 'rgba(251, 191, 36, 0.18)',
+          fill: '+1',
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          order: 2
+        }, {
+          label: 'Projection low',
+          data: projLow,
+          borderColor: 'rgba(251, 191, 36, 0.35)',
+          borderWidth: 1,
+          borderDash: [2, 4],
+          fill: false,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          order: 2
         }]
       },
       options: {
@@ -222,11 +317,20 @@
             borderWidth: 1,
             padding: 12,
             displayColors: false,
+            filter: function(item) {
+              // One line per point: the actual series where it exists, otherwise the central projection.
+              if (item.datasetIndex === 0) return item.raw !== null;
+              if (item.datasetIndex === 1) return prices[item.dataIndex] === null;
+              return false;
+            },
             callbacks: {
               title: function(context) {
                 return context[0].label;
               },
               label: function(context) {
+                if (context.datasetIndex === 1) {
+                  return 'Projected index: ' + context.raw + '  (range ' + projLow[context.dataIndex] + '–' + projHigh[context.dataIndex] + ')';
+                }
                 return 'Index: ' + context.raw;
               },
               afterLabel: function(context) {
@@ -249,7 +353,7 @@
           },
           y: {
             min: 0,
-            max: 750,
+            max: 1200,
             grid: {
               color: '#374151',
               drawBorder: false
