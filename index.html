@@ -84,7 +84,7 @@
     <div class="stats-grid">
       <div class="stat-card">
         <p class="stat-label">Since Jan 2025</p>
-        <p class="stat-value red">+890%</p>
+        <p class="stat-value red">+902%</p>
         <p class="stat-note">Jan 25 → Oct 26</p>
       </div>
       <div class="stat-card">
@@ -100,7 +100,7 @@
       <div class="stat-card">
         <p class="stat-label">Q4 2026 outlook</p>
         <p class="stat-value amber">+10–15%</p>
-        <p class="stat-note">TrendForce contract forecast; spot flat since mid-Sep</p>
+        <p class="stat-note">TrendForce contract forecast; spot only +1.2% in Oct and easing</p>
       </div>
     </div>
 
@@ -146,7 +146,7 @@
         <div class="phase-item">
           <div class="phase-dot amber-dot"></div>
           <div class="phase-text">
-            <span class="phase-label amber-text">Oct 2026–present:</span> Spot plateau at record levels; contract still rising
+            <span class="phase-label amber-text">Oct 2026–present:</span> Spot peaks at $47.00, then eases; contract still rising
           </div>
         </div>
       </div>
@@ -166,13 +166,16 @@
           <li class="event-item"><span class="red-text">▸</span> <span><strong>Aug 2026:</strong> Record spot; Nanya record revenue, ~70% DDR4/LPDDR4; Upton: paying 10× for DRAM vs 18 months ago</span></li>
           <li class="event-item"><span class="amber-text">▸</span> <span><strong>Sep 2026:</strong> Spot stalls; TrendForce calls Q4 contract +10–15%; Winbond customers seek LTAs to 2028–2030</span></li>
           <li class="event-item"><span class="orange-text">▸</span> <span><strong>1 Oct 2026:</strong> 4th RPi price hike: 2GB Pi 4 $55→$67.50, 2GB Pi 5 $65→$77.50</span></li>
+          <li class="event-item"><span class="red-text">▸</span> <span><strong>Oct 2026:</strong> DDR4 8Gb contract price $27.50, up 5.77% on the month and the 19th consecutive monthly gain, while spot peaked at $47.00 on 26 Oct and settled back to $46.86</span></li>
+          <li class="event-item"><span class="amber-text">▸</span> <span><strong>30 Oct 2026:</strong> TrendForce expects Samsung and SK hynix to cut 2027 PC DRAM output by 20–40% as capacity shifts to server DRAM and HBM; neither supplier has confirmed it</span></li>
+          <li class="event-item"><span class="orange-text">▸</span> <span><strong>2 Nov 2026:</strong> 5th RPi price hike: 16GB Pi 5 $305→$385, 16GB Compute Module 5 up $40, Pi 500+ held; Upton cites a lack of alternative 16GB DRAM supply</span></li>
         </ul>
       </div>
     </div>
 
     <div class="proj-card">
       <h2 class="info-title">About the projection</h2>
-      <p>The dotted line carries TrendForce's 30 September forecast of +10–15% for Q4 2026 conventional DRAM contract prices onto the spot index at roughly +4% per month, reaching about 1,030 in November and 1,070 in December. The shaded range runs from a flat case (spot has not moved since mid-September, and one analyst calls Q4 at +0–5%) up to the high end of the PC DRAM forecast (+13–18%). Nobody publishes November- or December-specific numbers; these are derived from quarterly ranges. Relief is not in any forecast before late 2027: Nanya's new fab starts wafers in H2 2027, Micron's Virginia restart only quadruples a 7% slice of its output by 2027, and Counterpoint still sees no correction before H2 2027.</p>
+      <p>The dotted line carries TrendForce's 30 September forecast of +10–15% for Q4 2026 conventional DRAM contract prices onto the spot index. Compounding the 12.5% midpoint into a monthly rate gives +4.0% per month, which from October's 1,002 reaches 1,042 in November and 1,084 in December. The lower edge of the shaded band is a flat case, and October earned it: the mainstream 8Gb chip peaked at $47.00 on 26 October, then sat unchanged at $46.86 for the last three sessions of the month and opened November at $46.82. The upper edge applies the top of TrendForce's PC DRAM forecast of +13–18%, or +5.7% per month, giving 1,059 and 1,119. The gap between the two edges is the real story this month: contract prices rose 5.8% in October while spot rose 1.2%, so the forecast the central line rests on is being set by contract negotiations that spot trading is no longer confirming. Nobody publishes November- or December-specific numbers; these are derived from quarterly ranges. Relief is not in any forecast before late 2027: Nanya's new fab starts wafers in H2 2027, Micron's Virginia restart only quadruples a 7% slice of its output by 2027, and SK hynix now says demand outruns supply through 2030.</p>
     </div>
 
     <div class="drivers-card">
@@ -195,19 +198,19 @@
 
     <p class="sources">
       Sources: TrendForce / DRAMeXchange weekly spot updates (mainstream DDR4 8Gb 1Gx8 3200), TrendForce quarterly contract forecasts, Counterpoint Research, The Memory Guy, DigiTimes, Raspberry Pi announcements. 
-      Index values are representative estimates: the Jan 2025–Apr 2026 series is reconstructed from reported percentage changes, and May–Oct 2026 applies TrendForce month-end spot ratios to the April value. Exact spot prices are behind paywalls. Last updated 4 October 2026.
+      Index values are representative estimates: the Jan 2025–Apr 2026 series is reconstructed from reported percentage changes, and May–Oct 2026 applies TrendForce month-end spot ratios to the April value. Exact spot prices are behind paywalls. October 2026 is final, taken from the 30 October session, the last trading day of the month. Last updated 2 November 2026.
     </p>
   </div>
 
   <script>
     const labels = ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25',
                     'Jan 26', 'Feb 26', 'Mar 26', 'Apr 26', 'May 26', 'Jun 26', 'Jul 26', 'Aug 26', 'Sep 26', 'Oct 26', 'Nov 26', 'Dec 26'];
-    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650, 700, 695, 719, 770, 900, 933, 990, 990, null, null];
+    const prices = [100, 95, 105, 140, 180, 210, 240, 270, 300, 340, 390, 450, 550, 650, 700, 695, 719, 770, 900, 933, 990, 1002, null, null];
     // Projection: starts at the last actual point so the dotted line is continuous.
     const N = null;
-    const projCentral = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990, 1030, 1070];
-    const projLow     = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990,  990,  990];
-    const projHigh    = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 990, 1045, 1105];
+    const projCentral = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 1002, 1042, 1084];
+    const projLow     = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 1002, 1002, 1002];
+    const projHigh    = [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N, 1002, 1059, 1119];
     const events = [
       'Stable/declining, CXMT flooding market',
       'Continued dip from Chinese oversupply',
@@ -230,9 +233,9 @@
       'Spot +16.9%, strongest month of 2026; branded DDR4 demand; CXMT IPO',
       'Spot +3.7%; record $42.50 per 8Gb chip on 10 Aug, then consolidation',
       'Spot +6.1%; 8Gb still rising while 16Gb DDR4 and DDR5 soften; Q4 contract called +10–15%',
-      'Spot flat through 2 Oct (partial month, provisional); 4th RPi hike: 2GB Pi 4 $67.50, 2GB Pi 5 $77.50',
-      'Projection: Q4 contract +10–15% spread at ~4%/month; range flat to +5.7%/month',
-      'Projection: central 1,070; range 990 (flat spot) to 1,105 (high contract case)'
+      'Spot +1.2% to $46.86 at month end: peaked at $47.00 on 26 Oct, then eased; contract +5.8% to $27.50; 4th RPi hike on 1 Oct',
+      'Projection: Q4 conventional DRAM contract +10–15% compounded at +4.0%/month; range flat to +5.7%/month',
+      'Projection: central 1,084; range 1,002 (flat spot) to 1,119 (high PC DRAM case)'
     ];
 
     const ctx = document.getElementById('priceChart').getContext('2d');
